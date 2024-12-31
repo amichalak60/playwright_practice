@@ -24,19 +24,25 @@ test.describe("Login tests", () => {
   test("Log-in with incorrect login returns expected error message", async ({
     page,
   }) => {
+    // Act
     await page.goto(url);
     await page.locator('[data-test="username"]').fill(wrongUserId);
     await page.locator('[data-test="login-button"]').click();
+
+    // Assert
     await expect(page.locator('[data-test="error"]')).toBeVisible();
   });
 
   test("Log-in with incorrect password returns expected error message", async ({
     page,
   }) => {
+    // Act
     await page.goto(url);
     await page.locator('[data-test="username"]').fill(userId);
     await page.locator('[data-test="password"]').fill(wrongUserPassword);
     await page.locator('[data-test="login-button"]').click();
+
+    // Assert
     await expect(page.locator('[data-test="error"]')).toBeVisible();
   });
 });
