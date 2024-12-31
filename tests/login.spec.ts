@@ -7,6 +7,9 @@ test.describe('Login tests', () => {
   const userPassword = 'secret_sauce';
   const wrongUserId = 'wronglogin';
   const wrongUserPassword = '23rfwfe';
+  const incorrectLoginExpectedMessage = 'Epic sadface: Username and password do not match any user in this service'
+  const noPasswordExpectedMessage = 'Epic sadface: Password is required'
+  const incorrectPasswordExpectedMessage = 'Epic sadface: Username and password do not match any user in this service'
 
   test('Log-in with correct credentials is successful', async ({ page }) => {
     // Act
@@ -31,7 +34,7 @@ test.describe('Login tests', () => {
     await page.locator('[data-test="login-button"]').click();
 
     // Assert
-    await expect(page.locator('[data-test="error"]')).toHaveText('Epic sadface: Username and password do not match any user in this service');
+    await expect(page.locator('[data-test="error"]')).toHaveText(incorrectLoginExpectedMessage);
   });
 
   test('Log-in with no password returns expected error message', async ({
@@ -43,7 +46,7 @@ test.describe('Login tests', () => {
     await page.locator('[data-test="login-button"]').click();
 
     // Assert
-    await expect(page.locator('[data-test="error"]')).toHaveText('Epic sadface: Password is required');
+    await expect(page.locator('[data-test="error"]')).toHaveText(noPasswordExpectedMessage);
   });
 
   test('Log-in with incorrect password returns expected error message', async ({
@@ -56,6 +59,6 @@ test.describe('Login tests', () => {
     await page.locator('[data-test="login-button"]').click();
 
     // Assert
-    await expect(page.locator('[data-test="error"]')).toHaveText('Epic sadface: Username and password do not match any user in this service');
+    await expect(page.locator('[data-test="error"]')).toHaveText(incorrectPasswordExpectedMessage);
   });
 });
