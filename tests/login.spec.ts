@@ -7,6 +7,7 @@ test.describe('Login tests', () => {
   const userPassword = 'secret_sauce';
   const wrongUserId = 'wronglogin';
   const wrongUserPassword = '23rfwfe';
+  
   test('Log-in with correct credentials is successful', async ({ page }) => {
     // Act
     await page.goto(url);
