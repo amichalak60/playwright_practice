@@ -1,14 +1,13 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 
-test.describe("Login tests", () => {
+test.describe('Login tests', () => {
   // Arrange
-  const url = "https://www.saucedemo.com/";
-  const userId = "standard_user";
-  const userPassword = "secret_sauce";
-  const wrongUserId = "wronglogin";
-  const wrongUserPassword = "23rfwfe";
-  test("Log-in with correct credentials is successful", async ({ page }) => {
-
+  const url = 'https://www.saucedemo.com/';
+  const userId = 'standard_user';
+  const userPassword = 'secret_sauce';
+  const wrongUserId = 'wronglogin';
+  const wrongUserPassword = '23rfwfe';
+  test('Log-in with correct credentials is successful', async ({ page }) => {
     // Act
     await page.goto(url);
     await page.locator('[data-test="username"]').fill(userId);
@@ -17,11 +16,11 @@ test.describe("Login tests", () => {
 
     // Assert
     await expect(
-      page.locator('[data-test="shopping-cart-link"]')
+      page.locator('[data-test="shopping-cart-link"]'),
     ).toBeVisible();
   });
 
-  test("Log-in with incorrect login returns expected error message", async ({
+  test('Log-in with incorrect login returns expected error message', async ({
     page,
   }) => {
     // Act
@@ -33,7 +32,7 @@ test.describe("Login tests", () => {
     await expect(page.locator('[data-test="error"]')).toBeVisible();
   });
 
-  test("Log-in with incorrect password returns expected error message", async ({
+  test('Log-in with incorrect password returns expected error message', async ({
     page,
   }) => {
     // Act
