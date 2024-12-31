@@ -1,13 +1,13 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Login tests", () => {
+  // Arrange
+  const url = "https://www.saucedemo.com/";
+  const userId = "standard_user";
+  const userPassword = "secret_sauce";
+  const wrongUserId = "wronglogin";
+  const wrongUserPassword = "23rfwfe";
   test("Log-in with correct credentials is successful", async ({ page }) => {
-    // Arrange
-    const url = "https://www.saucedemo.com/";
-    const userId = "standard_user";
-    const userPassword = "secret_sauce";
-    const wrongUserId = "wronglogin";
-    const wrongUserPassword = "23rfwfe";
 
     // Act
     await page.goto(url);
