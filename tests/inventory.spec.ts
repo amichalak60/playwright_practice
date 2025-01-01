@@ -50,7 +50,7 @@ test.describe('Inventory page tests', () => {
       .locator('[data-test="inventory-item-name"]')
       .first();
 
-    //assert
+    //assert - checking that the first product in the list is the one we expect according to sorting
     await expect(firstProduct).toHaveText('Test.allTheThings() T-Shirt (Red)');
 
     //act
@@ -59,7 +59,7 @@ test.describe('Inventory page tests', () => {
       .selectOption('lohi');
 
     firstProduct = page.locator('[data-test="inventory-item-name"]').first();
-    //assert
+    //assert - checking that the first product in the list is the one we expect according to sorting
     await expect(firstProduct).toHaveText('Sauce Labs Onesie');
 
     //act
@@ -68,7 +68,7 @@ test.describe('Inventory page tests', () => {
       .selectOption('hilo');
     firstProduct = page.locator('[data-test="inventory-item-name"]').first();
 
-    //assert
+    //assert - checking that the first product in the list is the one we expect according to sorting
     await expect(firstProduct).toHaveText('Sauce Labs Fleece Jacket');
   });
 });
