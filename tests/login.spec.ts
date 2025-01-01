@@ -1,17 +1,16 @@
 import { test, expect } from '@playwright/test';
+import { loginData } from './test-data/login.data';
 
 test.describe('Login tests', () => {
-
   // Arrange - most commonly used constants
-  const userId = 'standard_user';
-  const userPassword = 'secret_sauce';
+  const userId = loginData.userId;
+  const userPassword = loginData.userPassword;
 
-    test.beforeEach(async ({ page }) => {
-      await page.goto('/');
-    });
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
 
   test('Log-in with correct credentials is successful', async ({ page }) => {
-
     // Act
     await page.locator('[data-test="username"]').fill(userId);
     await page.locator('[data-test="password"]').fill(userPassword);
@@ -26,11 +25,10 @@ test.describe('Login tests', () => {
   test('Log-in with incorrect login returns expected error message', async ({
     page,
   }) => {
-
     // Arrange
     const wrongUserId = 'wronglogin';
     const incorrectLoginExpectedMessage =
-    'Epic sadface: Username and password do not match any user in this service';
+      'Epic sadface: Username and password do not match any user in this service';
 
     // Act
     await page.locator('[data-test="username"]').fill(wrongUserId);
@@ -46,7 +44,6 @@ test.describe('Login tests', () => {
   test('Log-in with no password returns expected error message', async ({
     page,
   }) => {
-
     //Arrange
     const noPasswordExpectedMessage = 'Epic sadface: Password is required';
 
@@ -63,11 +60,10 @@ test.describe('Login tests', () => {
   test('Log-in with incorrect password returns expected error message', async ({
     page,
   }) => {
-
     // Arrange
     const wrongUserPassword = '23rfwfe';
     const incorrectPasswordExpectedMessage =
-    'Epic sadface: Username and password do not match any user in this service';
+      'Epic sadface: Username and password do not match any user in this service';
 
     // Act
     await page.locator('[data-test="username"]').fill(userId);
