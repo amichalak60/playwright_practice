@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
+import { LoginPage } from '../pages/login.page';
 
 test.describe('Login tests', () => {
   // Arrange - most commonly used constants
@@ -12,9 +13,10 @@ test.describe('Login tests', () => {
 
   test('Log-in with correct credentials is successful', async ({ page }) => {
     // Act
-    await page.locator('[data-test="username"]').fill(userId);
-    await page.locator('[data-test="password"]').fill(userPassword);
-    await page.locator('[data-test="login-button"]').click();
+    const loginPage = new LoginPage(page);
+    await loginPage.usernameField.fill(userId);
+    await loginPage.passwordField.fill(userPassword);
+    await loginPage.loginButton.click();
 
     // Assert
     await expect(

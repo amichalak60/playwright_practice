@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
+import { LoginPage } from '../pages/login.page';
 
 test.describe('Inventory page tests', () => {
   // Arrange - most commonly used constants
@@ -8,14 +9,18 @@ test.describe('Inventory page tests', () => {
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
+    const loginPage = new LoginPage(page);
+    await loginPage.usernameField.fill(userId);
+    await loginPage.passwordField.fill(userPassword);
+    await loginPage.loginButton.click();
   });
 
   test('Adding items to cart is successful', async ({ page }) => {
-    //act
+    //assert
 
-    await page.locator('[data-test="username"]').fill(userId);
-    await page.locator('[data-test="password"]').fill(userPassword);
-    await page.locator('[data-test="login-button"]').click();
+    await expect(
+      page.locator('[data-test="shopping-cart-link"]'),
+    ).toBeVisible();
 
     const productSelectors = [
       '[data-test="add-to-cart-sauce-labs-backpack"]',
@@ -38,10 +43,12 @@ test.describe('Inventory page tests', () => {
   });
 
   test('Sorting items is successful', async ({ page }) => {
+    //assert
+    await expect(
+      page.locator('[data-test="shopping-cart-link"]'),
+    ).toBeVisible();
+
     //act
-    await page.locator('[data-test="username"]').fill(userId);
-    await page.locator('[data-test="password"]').fill(userPassword);
-    await page.locator('[data-test="login-button"]').click();
     await page.getByText('Name (A to Z)Name (A to Z)').click();
     await page
       .locator('[data-test="product-sort-container"]')
