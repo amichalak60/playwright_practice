@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
+import { InventoryPage } from '../pages/inventory.page';
 
 test.describe('Login tests', () => {
   // Arrange - most commonly used constants
@@ -14,12 +15,13 @@ test.describe('Login tests', () => {
   test('Log-in with correct credentials is successful', async ({ page }) => {
     // Act
     const loginPage = new LoginPage(page);
+    const inventoryPage = new InventoryPage(page);
     await loginPage.usernameField.fill(userId);
     await loginPage.passwordField.fill(userPassword);
     await loginPage.loginButton.click();
 
     // Assert
-    await expect(loginPage.shoppingCart).toBeVisible();
+    await expect(inventoryPage.shoppingCart).toBeVisible();
   });
 
   test('Log-in with incorrect login returns expected error message', async ({

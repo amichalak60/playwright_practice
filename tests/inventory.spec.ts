@@ -1,15 +1,21 @@
 import { test, expect } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
+import { InventoryPage } from '../pages/inventory.page';
 
 test.describe('Inventory page tests', () => {
-  // Arrange - most commonly used constants
+  // arrange - most commonly used constants
+  let loginPage: LoginPage;
+  let inventoryPage: InventoryPage;
   const userId = loginData.userId;
   const userPassword = loginData.userPassword;
 
   test.beforeEach(async ({ page }) => {
+    //arrange
+    loginPage = new LoginPage(page);
+    inventoryPage = new InventoryPage(page);
+    //act
     await page.goto('/');
-    const loginPage = new LoginPage(page);
     await loginPage.usernameField.fill(userId);
     await loginPage.passwordField.fill(userPassword);
     await loginPage.loginButton.click();
@@ -18,9 +24,7 @@ test.describe('Inventory page tests', () => {
   test('Adding items to cart is successful', async ({ page }) => {
     //assert
 
-    await expect(
-      page.locator('[data-test="shopping-cart-link"]'),
-    ).toBeVisible();
+    await expect(inventoryPage.shoppingCart).toBeVisible();
 
     const productSelectors = [
       '[data-test="add-to-cart-sauce-labs-backpack"]',
@@ -37,43 +41,32 @@ test.describe('Inventory page tests', () => {
     }
 
     //assert
-    await expect(page.locator('[data-test="shopping-cart-badge"]')).toHaveText(
-      '6',
-    );
+    await expect(inventoryPage.shoppingCartBadge).toHaveText('6');
   });
 
   test('Sorting items is successful', async ({ page }) => {
     //assert
-    await expect(
-      page.locator('[data-test="shopping-cart-link"]'),
-    ).toBeVisible();
+    await expect(inventoryPage.shoppingCart).toBeVisible();
 
     //act
-    await page.getByText('Name (A to Z)Name (A to Z)').click();
-    await page
-      .locator('[data-test="product-sort-container"]')
-      .selectOption('za');
-    let firstProduct = page
-      .locator('[data-test="inventory-item-name"]')
-      .first();
+    await inventoryPage.productSortDropDown.selectOption('za');
+
+    let firstProduct = inventoryPage.inventoryItemName.first();
 
     //assert - checking that the first product in the list is the one we expect according to sorting
     await expect(firstProduct).toHaveText('Test.allTheThings() T-Shirt (Red)');
 
     //act
-    await page
-      .locator('[data-test="product-sort-container"]')
-      .selectOption('lohi');
+    await inventoryPage.productSortDropDown.selectOption('lohi');
 
-    firstProduct = page.locator('[data-test="inventory-item-name"]').first();
+    firstProduct = inventoryPage.inventoryItemName.first();
+
     //assert - checking that the first product in the list is the one we expect according to sorting
     await expect(firstProduct).toHaveText('Sauce Labs Onesie');
 
     //act
-    await page
-      .locator('[data-test="product-sort-container"]')
-      .selectOption('hilo');
-    firstProduct = page.locator('[data-test="inventory-item-name"]').first();
+    await inventoryPage.productSortDropDown.selectOption('hilo');
+    firstProduct = inventoryPage.inventoryItemName.first();
 
     //assert - checking that the first product in the list is the one we expect according to sorting
     await expect(firstProduct).toHaveText('Sauce Labs Fleece Jacket');
