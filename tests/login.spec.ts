@@ -19,9 +19,7 @@ test.describe('Login tests', () => {
     await loginPage.loginButton.click();
 
     // Assert
-    await expect(
-      page.locator('[data-test="shopping-cart-link"]'),
-    ).toBeVisible();
+    await expect(loginPage.shoppingCart).toBeVisible();
   });
 
   test('Log-in with incorrect login returns expected error message', async ({
@@ -33,9 +31,10 @@ test.describe('Login tests', () => {
       'Epic sadface: Username and password do not match any user in this service';
 
     // Act
-    await page.locator('[data-test="username"]').fill(wrongUserId);
-    await page.locator('[data-test="password"]').fill(userPassword);
-    await page.locator('[data-test="login-button"]').click();
+    const loginPage = new LoginPage(page);
+    await loginPage.usernameField.fill(wrongUserId);
+    await loginPage.passwordField.fill(userPassword);
+    await loginPage.loginButton.click();
 
     // Assert
     await expect(page.locator('[data-test="error"]')).toHaveText(
@@ -50,8 +49,9 @@ test.describe('Login tests', () => {
     const noPasswordExpectedMessage = 'Epic sadface: Password is required';
 
     // Act
-    await page.locator('[data-test="username"]').fill(userId);
-    await page.locator('[data-test="login-button"]').click();
+    const loginPage = new LoginPage(page);
+    await loginPage.usernameField.fill(userId);
+    await loginPage.loginButton.click();
 
     // Assert
     await expect(page.locator('[data-test="error"]')).toHaveText(
@@ -68,9 +68,10 @@ test.describe('Login tests', () => {
       'Epic sadface: Username and password do not match any user in this service';
 
     // Act
-    await page.locator('[data-test="username"]').fill(userId);
-    await page.locator('[data-test="password"]').fill(wrongUserPassword);
-    await page.locator('[data-test="login-button"]').click();
+    const loginPage = new LoginPage(page);
+    await loginPage.usernameField.fill(userId);
+    await loginPage.passwordField.fill(wrongUserPassword);
+    await loginPage.loginButton.click();
 
     // Assert
     await expect(page.locator('[data-test="error"]')).toHaveText(
