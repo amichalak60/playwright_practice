@@ -22,7 +22,7 @@ test.describe('Inventory page tests', () => {
 
   test('Adding items to cart is successful', async ({ page }) => {
     //assert
-    await expect(inventoryPage.shoppingCart).toBeVisible();
+    await expect(inventoryPage.shoppingCartLink).toBeVisible();
 
     //act
     await inventoryPage.addSixItemsToCart();
@@ -33,7 +33,7 @@ test.describe('Inventory page tests', () => {
 
   test('Removing items from cart is successful', async ({ page }) => {
     //assert
-    await expect(inventoryPage.shoppingCart).toBeVisible();
+    await expect(inventoryPage.shoppingCartLink).toBeVisible();
 
     //act
     await inventoryPage.addSixItemsToCart();
@@ -45,7 +45,7 @@ test.describe('Inventory page tests', () => {
 
   test('Sorting items is successful', async ({ page }) => {
     //assert
-    await expect(inventoryPage.shoppingCart).toBeVisible();
+    await expect(inventoryPage.shoppingCartLink).toBeVisible();
 
     //act
     await inventoryPage.productSortDropDown.selectOption('za');

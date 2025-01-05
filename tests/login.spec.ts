@@ -19,7 +19,7 @@ test.describe('Login tests', () => {
     await loginPage.login(userId, userPassword);
 
     // Assert
-    await expect(inventoryPage.shoppingCart).toBeVisible();
+    await expect(inventoryPage.shoppingCartLink).toBeVisible();
   });
 
   test('Log-in with incorrect login returns expected error message', async ({ page }) => {
