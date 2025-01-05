@@ -30,6 +30,6 @@ test.describe('Cart page tests', () => {
     await expect(cartPage.cartTitle).toBeVisible();
 
     //act
-    cartPage.removeItemsFromCart();
+    cartPage.removeTwoItemsFromCart();
   });
 });
