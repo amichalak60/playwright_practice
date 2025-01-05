@@ -19,23 +19,20 @@ test.describe('Checkout information page tests', () => {
     loginPage = new LoginPage(page);
     inventoryPage = new InventoryPage(page);
     cartPage = new CartPage(page);
-
+    checkoutInformationPage = new CheckoutInformationPage(page);
     //act
     await page.goto('/');
     await loginPage.login(userId, userPassword);
     await inventoryPage.addSixItemsToCart();
     await inventoryPage.accessCart();
+    await cartPage.continueToCheckoutInformation();
   });
 
   test('Entering checkout information is successful', async ({ page }) => {
     //arrange
-    checkoutInformationPage = new CheckoutInformationPage(page);
     const firstName = 'Adam';
     const lastName = 'Michalak';
     const postalCode = '111-234';
-
-    //act
-    await cartPage.continueToCheckoutInformation();
 
     //assert
     await expect(checkoutInformationPage.checkoutInformationPageTitle).toBeVisible();
@@ -47,6 +44,9 @@ test.describe('Checkout information page tests', () => {
   });
 
   test('Return to cart is successful', async ({ page }) => {
+    //assert
+    await expect(checkoutInformationPage.checkoutInformationPageTitle).toBeVisible();
+
     //act
     await checkoutInformationPage.returnToCart();
 
