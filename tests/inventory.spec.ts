@@ -14,11 +14,10 @@ test.describe('Inventory page tests', () => {
     //arrange
     loginPage = new LoginPage(page);
     inventoryPage = new InventoryPage(page);
+
     //act
     await page.goto('/');
-    await loginPage.usernameField.fill(userId);
-    await loginPage.passwordField.fill(userPassword);
-    await loginPage.loginButton.click();
+    await loginPage.login(userId, userPassword);
   });
 
   test('Adding items to cart is successful', async ({ page }) => {

@@ -16,54 +16,38 @@ test.describe('Login tests', () => {
     // Act
     const loginPage = new LoginPage(page);
     const inventoryPage = new InventoryPage(page);
-    await loginPage.usernameField.fill(userId);
-    await loginPage.passwordField.fill(userPassword);
-    await loginPage.loginButton.click();
+    await loginPage.login(userId, userPassword);
 
     // Assert
     await expect(inventoryPage.shoppingCart).toBeVisible();
   });
 
-  test('Log-in with incorrect login returns expected error message', async ({
-    page,
-  }) => {
+  test('Log-in with incorrect login returns expected error message', async ({ page }) => {
     // Arrange
     const wrongUserId = 'wronglogin';
-    const incorrectLoginExpectedMessage =
-      'Epic sadface: Username and password do not match any user in this service';
+    const incorrectLoginExpectedMessage = 'Epic sadface: Username and password do not match any user in this service';
 
     // Act
     const loginPage = new LoginPage(page);
-    await loginPage.usernameField.fill(wrongUserId);
-    await loginPage.passwordField.fill(userPassword);
-    await loginPage.loginButton.click();
+    await loginPage.loginWrongUserId(wrongUserId, userPassword);
 
     // Assert
-    await expect(page.locator('[data-test="error"]')).toHaveText(
-      incorrectLoginExpectedMessage,
-    );
+    await expect(loginPage.errorMessageBox).toHaveText(incorrectLoginExpectedMessage);
   });
 
-  test('Log-in with no password returns expected error message', async ({
-    page,
-  }) => {
+  test('Log-in with no password returns expected error message', async ({ page }) => {
     //Arrange
     const noPasswordExpectedMessage = 'Epic sadface: Password is required';
 
     // Act
     const loginPage = new LoginPage(page);
-    await loginPage.usernameField.fill(userId);
-    await loginPage.loginButton.click();
+    await loginPage.loginNoPassword(userId);
 
     // Assert
-    await expect(page.locator('[data-test="error"]')).toHaveText(
-      noPasswordExpectedMessage,
-    );
+    await expect(loginPage.errorMessageBox).toHaveText(noPasswordExpectedMessage);
   });
 
-  test('Log-in with incorrect password returns expected error message', async ({
-    page,
-  }) => {
+  test('Log-in with incorrect password returns expected error message', async ({ page }) => {
     // Arrange
     const wrongUserPassword = '23rfwfe';
     const incorrectPasswordExpectedMessage =
@@ -71,13 +55,9 @@ test.describe('Login tests', () => {
 
     // Act
     const loginPage = new LoginPage(page);
-    await loginPage.usernameField.fill(userId);
-    await loginPage.passwordField.fill(wrongUserPassword);
-    await loginPage.loginButton.click();
+    await loginPage.loginWrongPassword(userId, wrongUserPassword);
 
     // Assert
-    await expect(page.locator('[data-test="error"]')).toHaveText(
-      incorrectPasswordExpectedMessage,
-    );
+    await expect(loginPage.errorMessageBox).toHaveText(incorrectPasswordExpectedMessage);
   });
 });
