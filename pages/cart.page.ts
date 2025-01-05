@@ -10,7 +10,7 @@ export class CartPage {
   item1RemovalButton = this.page.locator('[data-test="remove-sauce-labs-backpack"]');
   item2RemovalButton = this.page.locator('[data-test="remove-sauce-labs-bike-light"]');
 
-  async removeItemsFromCart(): Promise<void> {
+  async removeTwoItemsFromCart(): Promise<void> {
     await this.item1RemovalButton.click();
     await expect(this.shoppingCartBadge).toHaveText('5');
     await this.item2RemovalButton.click();
