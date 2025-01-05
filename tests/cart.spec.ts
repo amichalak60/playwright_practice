@@ -35,7 +35,7 @@ test.describe('Cart page tests', () => {
 
   test('Return to shopping is successful', async ({ page }) => {
     //act
-    await cartPage.continueShoppingButton.click();
+    await cartPage.returnToShopping();
 
     //assert
     await expect(inventoryPage.productsPageTitle).toBeVisible();
