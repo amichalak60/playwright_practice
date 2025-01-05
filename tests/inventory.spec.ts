@@ -4,7 +4,7 @@ import { LoginPage } from '../pages/login.page';
 import { InventoryPage } from '../pages/inventory.page';
 
 test.describe('Inventory page tests', () => {
-  // arrange - most commonly used constants
+  // arrange - most commonly used variables
   let loginPage: LoginPage;
   let inventoryPage: InventoryPage;
   const userId = loginData.userId;
