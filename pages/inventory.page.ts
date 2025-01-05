@@ -5,6 +5,7 @@ export class InventoryPage {
 
   shoppingCartBadge = this.page.locator('[data-test="shopping-cart-badge"]');
   shoppingCartLink = this.page.locator('[data-test="shopping-cart-link"]');
+  productsPageTitle = this.page.locator('[data-test="title"]');
   productSortDropDown = this.page.locator('[data-test="product-sort-container"]');
   inventoryItemName = this.page.locator('[data-test="inventory-item-name"]');
   removeOnesieItem = this.page.locator('[data-test="remove-sauce-labs-onesie"]');

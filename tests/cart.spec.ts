@@ -32,4 +32,12 @@ test.describe('Cart page tests', () => {
     //act
     cartPage.removeTwoItemsFromCart();
   });
+
+  test('Return to shopping is successful', async ({ page }) => {
+    //act
+    await cartPage.continueShoppingButton.click();
+
+    //assert
+    await expect(inventoryPage.productsPageTitle).toBeVisible();
+  });
 });
