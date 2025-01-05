@@ -22,25 +22,25 @@ test.describe('Inventory page tests', () => {
 
   test('Adding items to cart is successful', async ({ page }) => {
     //assert
-
     await expect(inventoryPage.shoppingCart).toBeVisible();
 
-    const productSelectors = [
-      '[data-test="add-to-cart-sauce-labs-backpack"]',
-      '[data-test="add-to-cart-sauce-labs-bike-light"]',
-      '[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]',
-      '[data-test="add-to-cart-sauce-labs-fleece-jacket"]',
-      '[data-test="add-to-cart-sauce-labs-onesie"]',
-      '[data-test="add-to-cart-test\\.allthethings\\(\\)-t-shirt-\\(red\\)"]',
-    ];
-
-    // Loop through the product selectors and click each one
-    for (const selector of productSelectors) {
-      await page.locator(selector).click();
-    }
+    //act
+    await inventoryPage.addSixItemsToCart();
 
     //assert
     await expect(inventoryPage.shoppingCartBadge).toHaveText('6');
+  });
+
+  test('Removing items from cart is successful', async ({ page }) => {
+    //assert
+    await expect(inventoryPage.shoppingCart).toBeVisible();
+
+    //act
+    await inventoryPage.addSixItemsToCart();
+    await inventoryPage.removeOnesieItem.click();
+
+    //assert
+    await expect(inventoryPage.shoppingCartBadge).toHaveText('5');
   });
 
   test('Sorting items is successful', async ({ page }) => {
