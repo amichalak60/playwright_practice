@@ -25,4 +25,8 @@ export class InventoryPage {
       await this.page.locator(selector).click();
     }
   }
+
+  async accessCart(): Promise<void> {
+    await this.shoppingCartLink.click();
+  }
 }

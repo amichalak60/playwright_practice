@@ -3,12 +3,14 @@ import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
 import { InventoryPage } from '../pages/inventory.page';
 import { CartPage } from '../pages/cart.page';
+import { CheckoutInformationPage } from '../pages/checkout_information.page';
 
-test.describe('Cart page tests', () => {
+test.describe('Checkout information page tests', () => {
   // arrange - most commonly used variables
   let loginPage: LoginPage;
   let inventoryPage: InventoryPage;
   let cartPage: CartPage;
+  let checkoutInformationPage: CheckoutInformationPage;
   const userId = loginData.userId;
   const userPassword = loginData.userPassword;
 
@@ -25,19 +27,30 @@ test.describe('Cart page tests', () => {
     await inventoryPage.accessCart();
   });
 
-  test('Removing items from cart is successful', async ({ page }) => {
-    //assert
-    await expect(cartPage.cartTitle).toBeVisible();
+  test('Entering checkout information is successful', async ({ page }) => {
+    //arrange
+    checkoutInformationPage = new CheckoutInformationPage(page);
+    const firstName = 'Adam';
+    const lastName = 'Michalak';
+    const postalCode = '111-234';
 
     //act
-    cartPage.removeTwoItemsFromCart();
+    await cartPage.continueToCheckoutInformation();
+
+    //assert
+    await expect(checkoutInformationPage.checkoutInformationPageTitle).toBeVisible();
+
+    //act
+    await checkoutInformationPage.populateCheckoutInformationAndContinueToOverview(firstName, lastName, postalCode);
+
+    //assert
   });
 
-  test('Return to shopping is successful', async ({ page }) => {
+  test('Return to cart is successful', async ({ page }) => {
     //act
-    await cartPage.returnToShopping();
+    await checkoutInformationPage.returnToCart();
 
     //assert
-    await expect(inventoryPage.productsPageTitle).toBeVisible();
+    expect(cartPage.cartTitle).toBeVisible();
   });
 });
