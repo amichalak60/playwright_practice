@@ -1,16 +1,13 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
 import { InventoryPage } from '../pages/inventory.page';
+import { test } from '../fixtures/login.fixture';
 
 test.describe('Login tests', () => {
   // Arrange - most commonly used constants
   const userId = loginData.userId;
   const userPassword = loginData.userPassword;
-
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-  });
 
   test('Log-in with correct credentials is successful', async ({ page }) => {
     // Act

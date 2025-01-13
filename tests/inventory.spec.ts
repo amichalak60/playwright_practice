@@ -1,7 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
 import { InventoryPage } from '../pages/inventory.page';
+import { test } from '../fixtures/login.fixture';
 
 test.describe('Inventory page tests', () => {
   // arrange - most commonly used variables
