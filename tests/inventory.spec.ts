@@ -17,7 +17,6 @@ test.describe('Inventory page tests', () => {
     inventoryPage = new InventoryPage(page);
 
     //act
-    await page.goto('/');
     await loginPage.login(userId, userPassword);
   });
 
