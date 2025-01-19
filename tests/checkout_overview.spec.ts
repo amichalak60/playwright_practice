@@ -46,8 +46,9 @@ test.describe('Checkout information page tests', () => {
     await expect(checkoutOverviewPage.inventoryItemPrice).toHaveCount(6);
   });
 
-  test('Payment and shipping information is visible', async ({ page }) => {});
-  // TO BE CONTINUED
+  test('Payment and shipping information is visible', async ({ page }) => {
+    await checkoutOverviewPage.paymentAndShippingInfosAreVisibleAndDisplayValues();
+  });
   test('Price Total information is correct', async ({ page }) => {});
   // TO BE CONTINUED
   test('Going back to Checkout Information is successful', async ({ page }) => {});
