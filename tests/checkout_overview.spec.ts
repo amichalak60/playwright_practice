@@ -49,8 +49,9 @@ test.describe('Checkout information page tests', () => {
   test('Payment and shipping information is visible', async ({ page }) => {
     await checkoutOverviewPage.paymentAndShippingInfosAreVisibleAndDisplayValues();
   });
-  test('Price Total information is correct', async ({ page }) => {});
-  // TO BE CONTINUED
+  test('Price Total information is correct', async ({ page }) => {
+    await checkoutOverviewPage.totalPriceIsCorrect();
+  });
   test('Going back to Checkout Information is successful', async ({ page }) => {});
   // TO BE CONTINUED
 });
