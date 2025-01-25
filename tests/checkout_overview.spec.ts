@@ -40,7 +40,7 @@ test.describe('Checkout information page tests', () => {
     await checkoutInformationPage.populateCheckoutInformationAndContinueToOverview(firstName, lastName, postalCode);
   });
 
-  test('The right amount of products and their respective descriptions and prices are visible', async ({ page }) => {
+  test('The right amount of products, their respective descriptions and prices are visible', async ({ page }) => {
     await expect(checkoutOverviewPage.inventoryItemName).toHaveCount(6);
     await expect(checkoutOverviewPage.inventoryItemDescription).toHaveCount(6);
     await expect(checkoutOverviewPage.inventoryItemPrice).toHaveCount(6);
