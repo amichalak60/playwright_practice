@@ -5,3 +5,4 @@ node_modules/
 /playwright/.cache/
 # Authentication state file - contains sensitive session data
 LoginAuth.json
+.DS_Store
