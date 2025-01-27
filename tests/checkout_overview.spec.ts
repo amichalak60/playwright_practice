@@ -1,11 +1,10 @@
-import { expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
 import { InventoryPage } from '../pages/inventory.page';
 import { CartPage } from '../pages/cart.page';
 import { CheckoutInformationPage } from '../pages/checkout_information.page';
 import { CheckoutOverviewPage } from '../pages/checkout_overview.page';
-import { test } from '../fixtures/login.fixture';
 
 test.describe('Checkout information page tests', () => {
   // arrange - most commonly used variables
@@ -28,7 +27,7 @@ test.describe('Checkout information page tests', () => {
     const lastName = 'Michalak';
     const postalCode = '111-234';
     //act
-    await loginPage.login(userId, userPassword);
+    await page.goto('/inventory.html');
     await inventoryPage.addSixItemsToCart();
     await inventoryPage.accessCart();
     await cartPage.continueToCheckoutInformation();

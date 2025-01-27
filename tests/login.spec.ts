@@ -1,10 +1,17 @@
-import { expect } from '@playwright/test';
+import { expect, test as base } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
 import { InventoryPage } from '../pages/inventory.page';
-import { test } from '../fixtures/login.fixture';
+
+// keeping storageState undefined for login tests so that they're reliable
+const test = base.extend({
+  storageState: undefined,
+});
 
 test.describe('Login tests', () => {
+  test.beforeEach(async ({ context, page }, testInfo) => {
+    await page.goto('/');
+  });
   // Arrange - most commonly used constants
   const userId = loginData.userId;
   const userPassword = loginData.userPassword;

@@ -1,9 +1,8 @@
-import { expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
 import { InventoryPage } from '../pages/inventory.page';
 import { CartPage } from '../pages/cart.page';
-import { test } from '../fixtures/login.fixture';
 
 test.describe('Cart page tests', () => {
   // arrange - most commonly used variables
@@ -20,7 +19,7 @@ test.describe('Cart page tests', () => {
     cartPage = new CartPage(page);
 
     //act
-    await loginPage.login(userId, userPassword);
+    await page.goto('/inventory.html');
     await inventoryPage.addSixItemsToCart();
     await inventoryPage.accessCart();
   });
