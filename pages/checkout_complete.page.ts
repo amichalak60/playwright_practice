@@ -9,10 +9,10 @@ export class CheckoutCompletePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.completeHeader = this.page.locator('[data-test="complete-header"]');
-    this.completeText = this.page.locator('[data-test="complete-text"]');
-    this.checkoutCompletePageTitle = this.page.locator('[data-test="title"]');
-    this.backToProductsButton = this.page.locator('[data-test="back-to-products"]');
+    this.completeHeader = page.locator('[data-test="complete-header"]');
+    this.completeText = page.locator('[data-test="complete-text"]');
+    this.checkoutCompletePageTitle = page.locator('[data-test="title"]');
+    this.backToProductsButton = page.locator('[data-test="back-to-products"]');
   }
   async orderConfirmationTextIsVisible(): Promise<void> {
     await expect(this.completeHeader).toHaveText('Thank you for your order!');

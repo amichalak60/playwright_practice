@@ -11,13 +11,13 @@ export class CartPage {
   readonly continueShoppingButton: Locator;
   readonly continueToCheckoutInformationButton: Locator;
   constructor(page: Page) {
-    this.cartTitle = this.page.locator('[data-test="title"]');
-    this.shoppingCartBadge = this.page.locator('[data-test="shopping-cart-badge"]');
-    this.shoppingCartLink = this.page.locator('[data-test="shopping-cart-link"]');
-    this.item1RemovalButton = this.page.locator('[data-test="remove-sauce-labs-backpack"]');
-    this.item2RemovalButton = this.page.locator('[data-test="remove-sauce-labs-bike-light"]');
-    this.continueShoppingButton = this.page.locator('[data-test="continue-shopping"]');
-    this.continueToCheckoutInformationButton = this.page.locator('[data-test="checkout"]');
+    this.cartTitle = page.locator('[data-test="title"]');
+    this.shoppingCartBadge = page.locator('[data-test="shopping-cart-badge"]');
+    this.shoppingCartLink = page.locator('[data-test="shopping-cart-link"]');
+    this.item1RemovalButton = page.locator('[data-test="remove-sauce-labs-backpack"]');
+    this.item2RemovalButton = page.locator('[data-test="remove-sauce-labs-bike-light"]');
+    this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
+    this.continueToCheckoutInformationButton = page.locator('[data-test="checkout"]');
   }
   async removeTwoItemsFromCart(): Promise<void> {
     await this.item1RemovalButton.click();

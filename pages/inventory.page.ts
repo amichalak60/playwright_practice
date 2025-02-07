@@ -11,12 +11,12 @@ export class InventoryPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.shoppingCartBadge = this.page.locator('[data-test="shopping-cart-badge"]');
-    this.shoppingCartLink = this.page.locator('[data-test="shopping-cart-link"]');
-    this.productsPageTitle = this.page.locator('[data-test="title"]');
-    this.productSortDropDown = this.page.locator('[data-test="product-sort-container"]');
-    this.inventoryItemName = this.page.locator('[data-test="inventory-item-name"]');
-    this.removeOnesieItem = this.page.locator('[data-test="remove-sauce-labs-onesie"]');
+    this.shoppingCartBadge = page.locator('[data-test="shopping-cart-badge"]');
+    this.shoppingCartLink = page.locator('[data-test="shopping-cart-link"]');
+    this.productsPageTitle = page.locator('[data-test="title"]');
+    this.productSortDropDown = page.locator('[data-test="product-sort-container"]');
+    this.inventoryItemName = page.locator('[data-test="inventory-item-name"]');
+    this.removeOnesieItem = page.locator('[data-test="remove-sauce-labs-onesie"]');
   }
   async addSixItemsToCart(): Promise<void> {
     const productSelectors = [

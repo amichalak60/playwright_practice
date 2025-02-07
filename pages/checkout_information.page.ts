@@ -11,12 +11,12 @@ export class CheckoutInformationPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.checkoutInformationPageTitle = this.page.locator('[data-test="title"]');
-    this.firstNameField = this.page.locator('[data-test="firstName"]');
-    this.lastNameField = this.page.locator('[data-test="lastName"]');
-    this.postalCodeField = this.page.locator('[data-test="postalCode"]');
-    this.continueToOverviewButton = this.page.locator('[data-test="continue"]');
-    this.cancelButton = this.page.locator('[data-test="cancel"]');
+    this.checkoutInformationPageTitle = page.locator('[data-test="title"]');
+    this.firstNameField = page.locator('[data-test="firstName"]');
+    this.lastNameField = page.locator('[data-test="lastName"]');
+    this.postalCodeField = page.locator('[data-test="postalCode"]');
+    this.continueToOverviewButton = page.locator('[data-test="continue"]');
+    this.cancelButton = page.locator('[data-test="cancel"]');
   }
   async populateCheckoutInformationAndContinueToOverview(
     firstName: string,

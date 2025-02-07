@@ -18,18 +18,18 @@ export class CheckoutOverviewPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.checkoutOverviewPageTitle = this.page.locator('[data-test="title"]');
-    this.inventoryItemName = this.page.locator('[data-test="inventory-item-name"]');
-    this.inventoryItemDescription = this.page.locator('[data-test="inventory-item-desc"]');
-    this.inventoryItemPrice = this.page.locator('[data-test="inventory-item-price"]');
-    this.paymentInfoLabel = this.page.locator('[data-test="payment-info-label"]');
-    this.paymentInfoValue = this.page.locator('[data-test="payment-info-value"]');
-    this.shippingInfoLabel = this.page.locator('[data-test="shipping-info-label"]');
-    this.shippingInfoValue = this.page.locator('[data-test="shipping-info-value"]');
-    this.subtotalLabel = this.page.locator('[data-test="subtotal-label"]');
-    this.taxLabel = this.page.locator('[data-test="tax-label"]');
-    this.totalLabel = this.page.locator('[data-test="total-label"]');
-    this.finishButton = this.page.locator('[data-test="finish"]');
+    this.checkoutOverviewPageTitle = page.locator('[data-test="title"]');
+    this.inventoryItemName = page.locator('[data-test="inventory-item-name"]');
+    this.inventoryItemDescription = page.locator('[data-test="inventory-item-desc"]');
+    this.inventoryItemPrice = page.locator('[data-test="inventory-item-price"]');
+    this.paymentInfoLabel = page.locator('[data-test="payment-info-label"]');
+    this.paymentInfoValue = page.locator('[data-test="payment-info-value"]');
+    this.shippingInfoLabel = page.locator('[data-test="shipping-info-label"]');
+    this.shippingInfoValue = page.locator('[data-test="shipping-info-value"]');
+    this.subtotalLabel = page.locator('[data-test="subtotal-label"]');
+    this.taxLabel = page.locator('[data-test="tax-label"]');
+    this.totalLabel = page.locator('[data-test="total-label"]');
+    this.finishButton = page.locator('[data-test="finish"]');
   }
   async paymentAndShippingInfosAreVisibleAndDisplayValues(): Promise<void> {
     await expect(this.paymentInfoLabel).toBeVisible();
