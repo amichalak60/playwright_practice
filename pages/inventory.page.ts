@@ -1,15 +1,23 @@
-import { Page } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 
 export class InventoryPage {
-  constructor(private page: Page) {}
+  readonly page: Page;
+  readonly shoppingCartBadge: Locator;
+  readonly shoppingCartLink: Locator;
+  readonly productsPageTitle: Locator;
+  readonly productSortDropDown: Locator;
+  readonly inventoryItemName: Locator;
+  readonly removeOnesieItem: Locator;
 
-  shoppingCartBadge = this.page.locator('[data-test="shopping-cart-badge"]');
-  shoppingCartLink = this.page.locator('[data-test="shopping-cart-link"]');
-  productsPageTitle = this.page.locator('[data-test="title"]');
-  productSortDropDown = this.page.locator('[data-test="product-sort-container"]');
-  inventoryItemName = this.page.locator('[data-test="inventory-item-name"]');
-  removeOnesieItem = this.page.locator('[data-test="remove-sauce-labs-onesie"]');
-
+  constructor(page: Page) {
+    this.page = page;
+    this.shoppingCartBadge = this.page.locator('[data-test="shopping-cart-badge"]');
+    this.shoppingCartLink = this.page.locator('[data-test="shopping-cart-link"]');
+    this.productsPageTitle = this.page.locator('[data-test="title"]');
+    this.productSortDropDown = this.page.locator('[data-test="product-sort-container"]');
+    this.inventoryItemName = this.page.locator('[data-test="inventory-item-name"]');
+    this.removeOnesieItem = this.page.locator('[data-test="remove-sauce-labs-onesie"]');
+  }
   async addSixItemsToCart(): Promise<void> {
     const productSelectors = [
       '[data-test="add-to-cart-sauce-labs-backpack"]',

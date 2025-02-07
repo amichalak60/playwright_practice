@@ -1,13 +1,19 @@
-import { Page } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 
 export class LoginPage {
-  constructor(private page: Page) {}
+  readonly page: Page;
+  readonly usernameField: Locator;
+  readonly passwordField: Locator;
+  readonly loginButton: Locator;
+  readonly errorMessageBox: Locator;
 
-  usernameField = this.page.locator('[data-test="username"]');
-  passwordField = this.page.locator('[data-test="password"]');
-  loginButton = this.page.locator('[data-test="login-button"]');
-  errorMessageBox = this.page.locator('[data-test="error"]');
-
+  constructor(page: Page) {
+    this.page = page;
+    this.usernameField = this.page.locator('[data-test="username"]');
+    this.passwordField = this.page.locator('[data-test="password"]');
+    this.loginButton = this.page.locator('[data-test="login-button"]');
+    this.errorMessageBox = this.page.locator('[data-test="error"]');
+  }
   async login(userId: string, userPassword: string): Promise<void> {
     await this.usernameField.fill(userId);
     await this.passwordField.fill(userPassword);

@@ -1,15 +1,22 @@
-import { Page } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 
 export class CheckoutInformationPage {
-  constructor(private page: Page) {}
+  readonly page: Page;
+  readonly checkoutInformationPageTitle: Locator;
+  readonly firstNameField: Locator;
+  readonly lastNameField: Locator;
+  readonly postalCodeField: Locator;
+  readonly continueToOverviewButton: Locator;
+  readonly cancelButton: Locator;
 
-  checkoutInformationPageTitle = this.page.locator('[data-test="title"]');
-  firstNameField = this.page.locator('[data-test="firstName"]');
-  lastNameField = this.page.locator('[data-test="lastName"]');
-  postalCodeField = this.page.locator('[data-test="postalCode"]');
-  continueToOverviewButton = this.page.locator('[data-test="continue"]');
-  cancelButton = this.page.locator('[data-test="cancel"]');
-
+  constructor(page: Page) {
+    this.checkoutInformationPageTitle = this.page.locator('[data-test="title"]');
+    this.firstNameField = this.page.locator('[data-test="firstName"]');
+    this.lastNameField = this.page.locator('[data-test="lastName"]');
+    this.postalCodeField = this.page.locator('[data-test="postalCode"]');
+    this.continueToOverviewButton = this.page.locator('[data-test="continue"]');
+    this.cancelButton = this.page.locator('[data-test="cancel"]');
+  }
   async populateCheckoutInformationAndContinueToOverview(
     firstName: string,
     lastName: string,

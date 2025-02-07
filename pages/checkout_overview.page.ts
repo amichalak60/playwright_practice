@@ -1,21 +1,37 @@
-import { Page } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 import { expect } from '@playwright/test';
 
 export class CheckoutOverviewPage {
-  constructor(private page: Page) {}
+  readonly page: Page;
+  readonly checkoutOverviewPageTitle: Locator;
+  readonly inventoryItemName: Locator;
+  readonly inventoryItemDescription: Locator;
+  readonly inventoryItemPrice: Locator;
+  readonly paymentInfoLabel: Locator;
+  readonly paymentInfoValue: Locator;
+  readonly shippingInfoLabel: Locator;
+  readonly shippingInfoValue: Locator;
+  readonly subtotalLabel: Locator;
+  readonly taxLabel: Locator;
+  readonly totalLabel: Locator;
+  readonly finishButton: Locator;
 
-  checkoutOverviewPageTitle = this.page.locator('[data-test="title"]');
-  inventoryItemName = this.page.locator('[data-test="inventory-item-name"]');
-  inventoryItemDescription = this.page.locator('[data-test="inventory-item-desc"]');
-  inventoryItemPrice = this.page.locator('[data-test="inventory-item-price"]');
-  paymentInfoLabel = this.page.locator('[data-test="payment-info-label"]');
-  paymentInfoValue = this.page.locator('[data-test="payment-info-value"]');
-  shippingInfoLabel = this.page.locator('[data-test="shipping-info-label"]');
-  shippingInfoValue = this.page.locator('[data-test="shipping-info-value"]');
-  subtotalLabel = this.page.locator('[data-test="subtotal-label"]');
-  taxLabel = this.page.locator('[data-test="tax-label"]');
-  totalLabel = this.page.locator('[data-test="total-label"]');
+  constructor(page: Page) {
+    this.page = page;
 
+    this.checkoutOverviewPageTitle = this.page.locator('[data-test="title"]');
+    this.inventoryItemName = this.page.locator('[data-test="inventory-item-name"]');
+    this.inventoryItemDescription = this.page.locator('[data-test="inventory-item-desc"]');
+    this.inventoryItemPrice = this.page.locator('[data-test="inventory-item-price"]');
+    this.paymentInfoLabel = this.page.locator('[data-test="payment-info-label"]');
+    this.paymentInfoValue = this.page.locator('[data-test="payment-info-value"]');
+    this.shippingInfoLabel = this.page.locator('[data-test="shipping-info-label"]');
+    this.shippingInfoValue = this.page.locator('[data-test="shipping-info-value"]');
+    this.subtotalLabel = this.page.locator('[data-test="subtotal-label"]');
+    this.taxLabel = this.page.locator('[data-test="tax-label"]');
+    this.totalLabel = this.page.locator('[data-test="total-label"]');
+    this.finishButton = this.page.locator('[data-test="finish"]');
+  }
   async paymentAndShippingInfosAreVisibleAndDisplayValues(): Promise<void> {
     await expect(this.paymentInfoLabel).toBeVisible();
     await expect(this.paymentInfoValue).toBeDefined();
