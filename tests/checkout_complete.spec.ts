@@ -37,10 +37,10 @@ test.describe('Checkout complete page tests', () => {
     await cartPage.continueToCheckoutInformation();
     await expect(checkoutInformationPage.checkoutInformationPageTitle).toBeVisible();
     await checkoutInformationPage.populateCheckoutInformationAndContinueToOverview(firstName, lastName, postalCode);
+    await checkoutOverviewPage.finishButton.click();
   });
 
   test('Checkout has been completed successfully', async ({ page }) => {
-    await checkoutOverviewPage.finishButton.click();
     await checkoutCompletePage.orderConfirmationTextIsVisible();
   });
 
