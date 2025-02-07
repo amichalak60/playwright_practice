@@ -18,7 +18,6 @@ export class CheckoutOverviewPage {
 
   constructor(page: Page) {
     this.page = page;
-
     this.checkoutOverviewPageTitle = this.page.locator('[data-test="title"]');
     this.inventoryItemName = this.page.locator('[data-test="inventory-item-name"]');
     this.inventoryItemDescription = this.page.locator('[data-test="inventory-item-desc"]');

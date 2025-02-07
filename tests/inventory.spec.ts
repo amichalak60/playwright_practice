@@ -9,7 +9,6 @@ test.describe('Inventory page tests', () => {
 
   test.beforeEach(async ({ page }) => {
     //arrange
-    loginPage = new LoginPage(page);
     inventoryPage = new InventoryPage(page);
     await page.goto('/inventory.html');
   });

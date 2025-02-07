@@ -7,7 +7,6 @@ import { CheckoutInformationPage } from '../pages/checkout_information.page';
 
 test.describe('Checkout information page tests', () => {
   // arrange - most commonly used variables
-  let loginPage: LoginPage;
   let inventoryPage: InventoryPage;
   let cartPage: CartPage;
   let checkoutInformationPage: CheckoutInformationPage;
@@ -16,7 +15,6 @@ test.describe('Checkout information page tests', () => {
 
   test.beforeEach(async ({ page }) => {
     //arrange
-    loginPage = new LoginPage(page);
     inventoryPage = new InventoryPage(page);
     cartPage = new CartPage(page);
     checkoutInformationPage = new CheckoutInformationPage(page);

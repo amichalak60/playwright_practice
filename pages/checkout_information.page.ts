@@ -10,6 +10,7 @@ export class CheckoutInformationPage {
   readonly cancelButton: Locator;
 
   constructor(page: Page) {
+    this.page = page;
     this.checkoutInformationPageTitle = this.page.locator('[data-test="title"]');
     this.firstNameField = this.page.locator('[data-test="firstName"]');
     this.lastNameField = this.page.locator('[data-test="lastName"]');
