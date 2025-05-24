@@ -1,6 +1,7 @@
 import { test } from '../fixtures/fixtures.ts';
 import { loginData } from '../test-data/login.data';
 import { expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test.describe('Checkout information page tests', () => {
   // arrange - most commonly used variables
@@ -18,9 +19,9 @@ test.describe('Checkout information page tests', () => {
 
   test('Entering checkout information is successful', async ({ checkoutInformationPage }) => {
     //arrange
-    const firstName = 'Adam';
-    const lastName = 'Michalak';
-    const postalCode = '111-234';
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
+    const postalCode = faker.location.zipCode();
 
     //assert
     await expect(checkoutInformationPage.checkoutInformationPageTitle).toBeVisible();
