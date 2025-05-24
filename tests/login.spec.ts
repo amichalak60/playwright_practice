@@ -8,7 +8,7 @@ const test = base.extend({
 });
 
 test.describe('Login tests', () => {
-  test.beforeEach(async ({ context, page }, testInfo) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
   // Arrange - most commonly used constants

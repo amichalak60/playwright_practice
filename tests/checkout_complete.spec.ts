@@ -1,14 +1,14 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/fixtures.ts';
-import { loginData } from '../test-data/login.data';
+import { faker } from '@faker-js/faker';
 
 test.describe('Checkout complete page tests', () => {
   test.beforeEach(async ({ page, inventoryPage, checkoutInformationPage, cartPage, checkoutOverviewPage }) => {
     //arrange
 
-    const firstName = 'Adam';
-    const lastName = 'Michalak';
-    const postalCode = '111-234';
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
+    const postalCode = faker.location.zipCode();
     //act
     await page.goto('/inventory.html');
     await inventoryPage.addSixItemsToCart();
