@@ -12,3 +12,5 @@ export const test = base.extend<{ forEachTest: void }>({
     { auto: true },
   ], // automatically starts for every test.
 });
+
+export { expect } from '@playwright/test';

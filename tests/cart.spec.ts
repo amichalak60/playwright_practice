@@ -1,22 +1,9 @@
-import { expect, test } from '@playwright/test';
-import { loginData } from '../test-data/login.data';
-import { LoginPage } from '../pages/login.page';
-import { InventoryPage } from '../pages/inventory.page';
-import { CartPage } from '../pages/cart.page';
+import { expect } from '@playwright/test';
+import { test } from '../fixtures/fixtures.ts';
 
 test.describe('Cart page tests', () => {
-  // arrange - most commonly used variables
-  let loginPage: LoginPage;
-  let inventoryPage: InventoryPage;
-  let cartPage: CartPage;
-  const userId = loginData.userId;
-  const userPassword = loginData.userPassword;
-
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, inventoryPage }) => {
     //arrange
-    loginPage = new LoginPage(page);
-    inventoryPage = new InventoryPage(page);
-    cartPage = new CartPage(page);
 
     //act
     await page.goto('/inventory.html');
@@ -24,7 +11,7 @@ test.describe('Cart page tests', () => {
     await inventoryPage.accessCart();
   });
 
-  test('Removing items from cart is successful', async ({ page }) => {
+  test('Removing items from cart is successful', async ({ cartPage }) => {
     //assert
     await expect(cartPage.cartTitle).toBeVisible();
 
@@ -32,7 +19,7 @@ test.describe('Cart page tests', () => {
     cartPage.removeTwoItemsFromCart();
   });
 
-  test('Return to shopping is successful', async ({ page }) => {
+  test('Return to shopping is successful', async ({ inventoryPage, cartPage }) => {
     //act
     await cartPage.returnToShopping();
 
